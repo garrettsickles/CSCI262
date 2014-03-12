@@ -1,0 +1,4 @@
+abcdcba
+ababbaba
+data structures
+never odd or even

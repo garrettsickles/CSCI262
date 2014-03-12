@@ -1,0 +1,40 @@
+GUI Enhancements:
+-Added 7 new menu items
+	1. Add/Login as a user (User->Add/Login)
+		-Opens popup text entry dialog box prompting the user for a username
+		-If the user exists, it will login as them and load their ratings
+		-If the user doesn't exist, it will ask the user if they wish to add this person as a new user (Yes/No).
+			-On Yes, the user will be added and a set of empty ratings will be loaded
+			-On No, the GUI will return to the its state previous to the "Add/Login..." selection
+	2. Delete a user (User->Delete)
+		-Open a popup text entry dialog box prompting the user for a username
+		-If the user exists, then they will be deleted. If that user is logged in, the will be switched to the Guest User profile.
+		-If the user doen't exist, a dialog box will alert them that the user does not exist and the GUI will return to its state previous to the "Delete..." selection
+	3. Add a book (Book->Add)
+		-Opens popup text entry dialog box prompting the user for a book in the format [TITLE](AUTHOR)
+		-If the book already exists, the user will be alerted that it exists and the GUI will return to the its state previous to the "Add..." selection
+		-If the book doesn't exist, the book will added, the book list will be refreshed and the user will be able to rate it
+	4. Delete a book (Book->Delete)
+		-If a book is currently highlighted in the book list field, it will be set as the default text in the text entry field
+		-Opens popup text entry dialog box prompting the user for a book in the format [TITLE](AUTHOR)
+			-If the book exists, the book will deleted, the book list will be refreshed without the book
+			-If the book doesn't exist, the user will be alerted that it doesn't exists and the GUI will return to the its state previous to the "Delete..." selection
+	5. Sort Book List by Author's Last Name (Book->Sort By Author (A-Z))
+		-Displays the books in alphabetical order of Author's last name
+	6. Sort Book List by Author's Last Name (Book->Sort By Title (A-Z))
+		-Displays the books in alphabetical order of Title, ignoring "The" at the start of a title
+	7. Save Changes (File->Save Changes)
+		-Saves all additions, and ratings changes made to the same files from which the program was loaded.
+-Recommendation Box
+	-Changed the box so it displays any book the user has not read that is also positively recommended in numeric order.
+	-The recommendations are sorted by their recommendation product, which is displayed next to the entry in parantheses. (Higher Number = Better Match)
+
+Recommendation Algorithm Enhancements:
+-Algorithm cycles through all the books I have read, comparing me to any other user that has read the same book.
+-A weighting factor for each comparison is created. It is equal to my rating of the book multiplied by the other user's rating.
+-If this factor is greater than 0, I add all the books they have rated into a map containing books and the sum of all their weighted ratings. If the book already is in the map, the book's weighted rating is added to the previous value.
+-The map is then loaded into a stack, with the best match on top and the worst at the back, and returned to the user
+
+Class Structure Enhancements:
+-I created a library class which handles the dynamic mapping of books, readers, and their respective ratings and also analyzes the dynamic map to get book recomendations for users
+-I created a book and a reader class to help conceptualize how the dynamic map functions
